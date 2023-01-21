@@ -59,7 +59,6 @@ public class ListsMethods {
             }
         }
         System.out.println(resultList);
-
     }
 
 
