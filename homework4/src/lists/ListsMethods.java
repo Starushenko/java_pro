@@ -45,9 +45,24 @@ public class ListsMethods {
                 resultList.put(element, 1);
             }
         }
-        System.out.println(resultList.toString());
+        System.out.println(resultList);
+    }
+
+    public static void findOccurance(List<String> list){
+        Map<String, Integer> resultList= new HashMap<>();
+        resultList.put(list.get(0),0);
+        for (String element: list ) {
+            if(resultList.containsKey(element)){
+                resultList.put("}\n{name: \""+ element +"\" , occurrence", resultList.get(element)+1);
+            } else {
+                resultList.put("}\n{name: \""+ element +"\" , occurrence", 1);
+            }
+        }
+        System.out.println(resultList);
 
     }
+
+
 }
 
 

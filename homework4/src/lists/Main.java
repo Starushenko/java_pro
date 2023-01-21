@@ -40,6 +40,10 @@ public class Main {
 
         ListsMethods.calcOccurance(list);
 
+        ListsMethods.findOccurance(list);
+
+
+
 
 
     }
