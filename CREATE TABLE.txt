@@ -1,0 +1,44 @@
+CREATE TABLE IF NOT EXISTS public."user"
+(
+    user_id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    name text COLLATE pg_catalog."default" NOT NULL,
+    surname text COLLATE pg_catalog."default" NOT NULL,
+    date_of_registration date NOT NULL,
+    CONSTRAINT user_pkey PRIMARY KEY (user_id)
+)
+
+CREATE TABLE IF NOT EXISTS public.wallet
+(
+    wallet_id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    currency bigint NOT NULL,
+    amount bigint NOT NULL DEFAULT 0,
+    user_id bigint NOT NULL,
+    created date NOT NULL,
+    CONSTRAINT wallet_pkey PRIMARY KEY (wallet_id)
+    foreign key(user_id) references user(user_id) on update cascade on delete cascade
+)
+
+
+insert into public.user
+(name ,surname ,date_of_registration)
+values
+('Petro','Ivanov','2017-10-21'),
+('Ivan','Petrov','2022-08-19'),
+('Bohdan','Starushenko','2020-02-02'),
+('Leon','Starushenko','2022-11-28'),
+('Yulia','Starushenko','2021-05-05');
+
+insert into public.wallet
+(currency ,amount ,user_id,created)
+values
+(940,1000,1,'2017-10-21'),
+(940,9999,2,'2022-08-19'),
+(940,1000,3,'2020-02-02'),
+(940,12400,4,'2022-11-28'),
+(940,2400,5,'2021-05-05'),
+(740,222,4,'2023-03-09'),
+(740,333,5,'2023-03-09');
+
+select name, currency, amount 
+from public.wallet  join public.user 
+on public.wallet.user_id=public.user.user_id
